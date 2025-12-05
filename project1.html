@@ -5,60 +5,73 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Fast Combat — Kishuu Portfolio</title>
 <style>
-  /* Paste same CSS from your index.html for colors/theme */
   body{margin:0;font-family:Arial;color:#e6eef8;background:#0f1724;}
   .container{max-width:1000px;margin:40px auto;padding:20px;}
   header{text-align:center;margin-bottom:40px;}
   header h1{font-size:32px;margin:10px 0;}
   header p{color:#94a3b8;margin:4px 0;}
-  .media-gallery{display:flex;flex-direction:column;gap:40px;}
-  .media-card{background:rgba(255,255,255,0.02);padding:20px;border-radius:14px;box-shadow:0 4px 20px rgba(2,6,23,0.6);}
-  .media-card img,.media-card video{width:100%;border-radius:12px;}
-  .media-card h3{margin:12px 0 6px 0;font-size:20px;}
-  .media-card p{color:#94a3b8;margin:0 0 8px 0;}
-  .media-card a.btn{display:inline-block;padding:8px 14px;background:#7c3aed;color:white;border-radius:8px;text-decoration:none;font-weight:600;}
+
+  /* spacing between cards */
+  .media-gallery{display:flex;flex-direction:column;gap:45px;}
+
+  .media-card{
+    background:rgba(255,255,255,0.02);
+    padding:20px;
+    border-radius:14px;
+    box-shadow:0 4px 20px rgba(2,6,23,0.6);
+  }
+
+  .media-card img,.media-card video{
+    width:100%;
+    border-radius:12px;
+  }
+
+  .media-card h3{margin:14px 0 6px 0;font-size:20px;}
+  .media-card p{color:#94a3b8;margin:0 0 10px 0;}
+  .media-card a.btn{
+    display:inline-block;
+    padding:8px 14px;
+    background:#7c3aed;
+    color:white;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:600;
+  }
+
   footer{text-align:center;margin-top:60px;color:#94a3b8;font-size:14px;}
 </style>
 </head>
 <body>
+
 <div class="container">
 <header>
   <h1>Fast Combat System</h1>
   <p>Gameplay & Combat Demo — Scroll down for images/videos</p>
 </header>
 
-<div class="media-card">
-  <div style="position:relative; width:100%; height:0px; padding-bottom:56.250%">
-    <iframe 
-      allow="fullscreen"
-      allowfullscreen
-      height="100%"
-      src="https://streamable.com/e/5i4jj2?"
-      width="100%"
-      style="border:none; width:100%; height:100%; position:absolute; left:0; top:0; overflow:hidden;">
-    </iframe>
-  </div>
+<div class="media-gallery">
 
-  <h3>Combat Demo Video</h3>
-  <p>A short preview of the Fast Combat system, including movement, chaining and hit effects.</p>
-</div>
-  
+  <!-- YOUTUBE VIDEO #1 -->
   <div class="media-card">
-    <video controls>
-      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <h3>Combat Demo Video</h3>
-    <p>Description for video.</p>
+    <div style="position:relative;width:100%;height:0;padding-bottom:56.25%;">
+      <iframe 
+        src="https://youtu.be/533Dt27nbP4"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:12px;">
+      </iframe>
+    </div>
+    <h3>Combat Breakdown</h3>
+    <p>A YouTube upload showing the latest fast-paced combat system.</p>
   </div>
 
-  <!-- Add more media-card divs here -->
 </div>
 
 <footer>
   <a class="btn" href="index.html">Back to Home</a>
   <p>Made with ♥ by Kishuu — Last updated 2025-12-04</p>
 </footer>
+
 </div>
 </body>
 </html>
