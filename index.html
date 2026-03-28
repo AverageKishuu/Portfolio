@@ -335,26 +335,26 @@ aside {
   } 
    
   .commission-status { 
-      display: flex; 
-      align-items: center; 
-      justify-content: center;
-      gap: 10px; 
-      padding: 12px; 
-      background: rgba(255, 255, 255, 0.15); 
-      border: 1px solid rgba(255, 255, 255, 0.3); 
-      border-radius: 18px; 
-      color: #10b981; 
-      font-weight: 800; 
-      font-size: 13px; 
-      letter-spacing: 1px; 
-      text-transform: uppercase;
-      backdrop-filter: blur(40px) saturate(200%);
-      -webkit-backdrop-filter: blur(40px) saturate(200%);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
-                  inset 0 0 15px rgba(255, 255, 255, 0.1);
-      text-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
-      margin-bottom: -10px;
-    }
+       display: flex; 
+       align-items: center; 
+       justify-content: center;
+       gap: 10px; 
+       padding: 12px; 
+       background: var(--card-bg); 
+       border: 1px solid rgba(16, 185, 129, 0.4); 
+       border-radius: 18px; 
+       color: #10b981; 
+       font-weight: 800; 
+       font-size: 13px; 
+       letter-spacing: 1px; 
+       text-transform: uppercase;
+       backdrop-filter: blur(40px) saturate(200%);
+       -webkit-backdrop-filter: blur(40px) saturate(200%);
+       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
+                   inset 0 0 15px rgba(255, 255, 255, 0.1);
+       text-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+       margin-bottom: -10px;
+     }
 
 .commission-status::before {
   content: '';
@@ -475,9 +475,9 @@ footer {
               <span>GitHub</span>
             </a>
             <a href="https://www.roblox.com/users/4076103415/profile" target="_blank" class="contact-item"> 
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M19.333 14.667L14.667 21.333H9.333L4.667 14.667L9.333 8H14.667L19.333 14.667Z" stroke="none" fill="currentColor" transform="rotate(-15 12 12)"/>
-                <rect x="10" y="10" width="4" height="4" fill="#0f172a" transform="rotate(-15 12 12)"/>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.5 16.5L12 18.5L7.5 16.5L6.5 12L8.5 7.5L13 5.5L17.5 7.5L18.5 12L18.5 16.5Z" />
+                <rect x="11" y="11" width="2" height="2" fill="#020617" transform="rotate(-15 12 12)" />
               </svg>
               <span>Roblox</span> 
             </a>
@@ -497,7 +497,7 @@ footer {
     </div>
 
     <footer>
-      <div>Made with ❤️ by Kishuu</div>
+      <div>Made by ❤️ Kishuu ❤️</div>
       <div>Last updated: <span id="updated">2026-03-28</span></div>
     </footer>
   </div>
