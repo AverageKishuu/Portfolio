@@ -5,29 +5,28 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Kishuu — Portfolio</title>
   <style>
+  .avatar {
+  width: 84px;          /* how big the avatar square is */
+  height: 84px;
+  overflow: hidden;     /* hide parts outside the square */
+  border-radius: 14px;  /* rounded corners */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255,255,255,0.08);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+}
+
+.avatar img {
+  width: 100%;          /* fill the square horizontally */
+  height: 100%;         /* fill the square vertically */
+  object-fit: cover;    /* crop image to fit square without stretching */
+  object-position: center; /* keep center of image visible */
+}
+    
     /* Simple, modern single-file portfolio. Customize the placeholders. */
    :root{--bg:#0f1724;--card:#0b1220;--muted:#94a3b8;--accent:#7c3aed}
-    body{
-  margin:0;
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-  color:#e6eef8;
-
-  background-image: url("Images/CarPose.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-
-  -webkit-font-smoothing:antialiased
-}
-
-    body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:rgba(7,16,38,0.75);
-  z-index:-1;
-}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;color:#e6eef8;background:linear-gradient(180deg,var(--bg),#071026);-webkit-font-smoothing:antialiased}
     .container{max-width:1100px;margin:40px auto;padding:24px}
     header{display:flex;align-items:center;gap:20px}
     .avatar{width:84px;height:84px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:28px}
@@ -67,7 +66,7 @@
   <div class="container">
     <header>
     <div class="avatar">
-        <img src="Images/CarPos.png" alt="Kishuu Avatar">
+        <img src="Images/CarPose.png" alt="Kishuu Avatar">
     </div>
       <div>
         <h1>Kishuu</h1>
