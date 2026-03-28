@@ -297,7 +297,8 @@ aside {
 .contact-item span {
   font-weight: 600;
   color: #fff;
-  width: 60px;
+  min-width: 90px;
+  white-space: nowrap;
 }
 
 .commission-status {
@@ -305,13 +306,14 @@ aside {
   align-items: center;
   gap: 10px;
   padding: 12px 24px;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
   border-radius: 16px;
   color: #10b981;
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.5px;
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
 }
 
 .commission-status::before {
@@ -320,7 +322,7 @@ aside {
   height: 8px;
   background: #10b981;
   border-radius: 50%;
-  box-shadow: 0 0 12px #10b981;
+  box-shadow: 0 0 15px #10b981, 0 0 5px #fff;
   animation: statusPulse 2s infinite ease-in-out;
 }
 
