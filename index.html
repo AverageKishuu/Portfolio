@@ -11,26 +11,25 @@
       --muted: #64748b;
     }
 
-    /* FULL-SCREEN BLURRED VIDEO BACKGROUND */
-   .video-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;   /* Use vw/vh for total viewport coverage */
-  height: 100vh;
-  z-index: -1;
-  background-color: #0f172a; /* Add a dark fallback color so you know it's working */
-  overflow: hidden;
-}
+    /* FULL-SCREEN BLURRED VIDEO BACKGROUND – Ultra clean */
+    .video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background-color: #0f172a; /* Dark fallback while video loads */
+      overflow: hidden;
+    }
     .video-background video {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: blur(12px) brightness(0.92) saturate(1.1);
-      /* Blur + slight brightness boost = clean, refreshing look while keeping text 100% readable */
+      filter: blur(14px) brightness(0.95) saturate(1.15);
     }
 
-    /* Base styles – clean white/refreshing theme */
+    /* Base styles */
     html, body {
       height: 100%;
       margin: 0;
@@ -43,7 +42,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background: transparent; /* Video handles the background */
+      background: transparent;
     }
 
     .container {
@@ -92,19 +91,21 @@
       font-weight: 500;
     }
 
-    /* Glassmorphic cards – modern & professional */
+    /* GLASSY CARDS – More transparent & frosted (exactly what you asked for) */
     .card {
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.38);     /* Much more transparent */
+      backdrop-filter: blur(28px);               /* Stronger glass blur */
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: 20px;
       padding: 28px;
-      box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+      box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .card:hover {
+      background: rgba(255, 255, 255, 0.48);
       transform: translateY(-3px);
-      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.18);
     }
 
     .about { line-height: 1.75; }
@@ -122,25 +123,27 @@
       margin-top: 16px;
     }
     .skill {
-      background: rgba(255,255,255,0.65);
+      background: rgba(255,255,255,0.32);        /* Glassy skill tags */
       color: var(--muted);
       padding: 7px 14px;
       border-radius: 9999px;
       font-size: 13.5px;
       font-weight: 500;
-      border: 1px solid rgba(20, 184, 166, 0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(12px);
     }
 
     .projects { display: flex; flex-direction: column; gap: 16px; }
     .project {
-      background: rgba(255,255,255,0.65);
-      border: 1px solid rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.35);        /* Glassy project cards */
+      border: 1px solid rgba(255,255,255,0.25);
       border-radius: 16px;
       padding: 22px;
       transition: all 0.3s ease;
+      backdrop-filter: blur(20px);
     }
     .project:hover {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.45);
       border-color: var(--accent);
     }
     .project h3 {
@@ -194,14 +197,14 @@
       color: var(--accent);
     }
 
-    /* PROFESSIONAL COMMISSION STATUS BADGE */
+    /* Commission Status – also made glassier */
     .commission-status {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 10px 24px;
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid #10b981;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
       border-radius: 9999px;
       color: #10b981;
       font-weight: 700;
@@ -209,6 +212,7 @@
       letter-spacing: 0.5px;
       box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
       white-space: nowrap;
+      backdrop-filter: blur(12px);
     }
     .commission-status::before {
       content: '';
@@ -245,12 +249,13 @@
 </head>
 <body>
 
-  <!-- BLURRED VIDEO BACKGROUND (refreshing abstract tech particles) -->
-<div class="video-background">
-    <video autoplay loop muted playsinline poster="fallback-image.jpg">
-  <source src="./Videos/BgVideo.mp4" type="video/mp4">
-</video>
-</div>
+  <!-- BLURRED VIDEO BACKGROUND -->
+  <div class="video-background">
+    <video autoplay loop muted playsinline>
+      <source src="./Videos/BgVideo.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
 
   <div class="container">
     <header>
