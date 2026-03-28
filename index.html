@@ -5,31 +5,55 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Kishuu — Portfolio</title>
   <style>
-    /* Simple, modern single-file portfolio. Customize the placeholders. */
-   :root{--bg:#0f1724;--card:#0b1220;--muted:#94a3b8;--accent:#7c3aed}
-    
-    /* FIXED: Full background coverage */
+    :root {
+      --accent: #14b8a6;     /* Fresh teal – refreshing & professional */
+      --text: #0f172a;
+      --muted: #64748b;
+    }
+
+    /* FULL-SCREEN BLURRED VIDEO BACKGROUND */
+    .video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .video-background video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(12px) brightness(0.92) saturate(1.1);
+      /* Blur + slight brightness boost = clean, refreshing look while keeping text 100% readable */
+    }
+
+    /* Base styles – clean white/refreshing theme */
     html, body {
       height: 100%;
       margin: 0;
+      padding: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
     }
     body {
-      font-family: Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-      color: #e6eef8;
-      background: linear-gradient(180deg, var(--bg), #071026);
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;           /* ← This was missing */
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
+      background: transparent; /* Video handles the background */
     }
 
     .container {
       max-width: 1100px;
       margin: 40px auto;
       padding: 24px;
-      flex: 1;                     /* ← Makes content area grow and push footer down */
+      flex: 1;
       display: flex;
       flex-direction: column;
+      z-index: 2;
+      position: relative;
     }
 
     header {
@@ -37,117 +61,228 @@
       align-items: center;
       justify-content: space-between;
       gap: 20px;
+      flex-wrap: wrap;
     }
+
     .avatar {
       width: 84px;
       height: 84px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent), #06b6d4);
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--accent), #22d3ee);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
       color: white;
       font-size: 28px;
+      box-shadow: 0 8px 25px rgba(20, 184, 166, 0.3);
     }
-    h1 { margin: 0; font-size: 28px; }
-    p.lead { margin: 6px 0; color: var(--muted); }
-    
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 360px;
-      gap: 24px;
-      margin-top: 24px;
-      flex: 1;                     /* ← Ensures grid takes remaining space */
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
     }
-    
+    p.lead {
+      margin: 4px 0 0 0;
+      font-size: 18px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* Glassmorphic cards – modern & professional */
     .card {
-      background: rgba(255,255,255,0.02);
-      padding: 18px;
-      border-radius: 14px;
-      box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .about { line-height: 1.6; color: #cfe6ff; }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    .about { line-height: 1.75; }
+    .about h2, .projects h2 {
+      font-size: 22px;
+      margin-bottom: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
     .skills {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 12px;
+      margin-top: 16px;
     }
     .skill {
-      background: rgba(255,255,255,0.03);
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-size: 13px;
+      background: rgba(255,255,255,0.65);
       color: var(--muted);
+      padding: 7px 14px;
+      border-radius: 9999px;
+      font-size: 13.5px;
+      font-weight: 500;
+      border: 1px solid rgba(20, 184, 166, 0.15);
     }
-    .projects { display: flex; flex-direction: column; gap: 12px; }
+
+    .projects { display: flex; flex-direction: column; gap: 16px; }
     .project {
-      display: block;
-      padding: 14px;
-      border-radius: 12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
-      border: 1px solid rgba(255,255,255,0.03);
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 16px;
+      padding: 22px;
+      transition: all 0.3s ease;
     }
-    .project h3 { margin: 0 0 6px 0; font-size: 16px; }
-    .project p { margin: 0; color: var(--muted); font-size: 14px; }
-    .meta { display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+    .project:hover {
+      background: rgba(255,255,255,0.9);
+      border-color: var(--accent);
+    }
+    .project h3 {
+      margin: 0 0 8px 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .project p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 12px;
-      border-radius: 10px;
+      padding: 12px 24px;
+      border-radius: 9999px;
       background: var(--accent);
       color: white;
       text-decoration: none;
       font-weight: 600;
+      font-size: 15px;
+      box-shadow: 0 6px 20px rgba(20, 184, 166, 0.3);
+      transition: all 0.3s ease;
     }
-    aside .contact { display: flex; flex-direction: column; gap: 8px; }
-    .contact a { color: #bfe7ff; text-decoration: none; }
-    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(20, 184, 166, 0.4);
+    }
+
+    aside .contact {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .contact a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact a:hover {
+      color: var(--accent);
+    }
+
+    /* PROFESSIONAL COMMISSION STATUS BADGE */
+    .commission-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid #10b981;
+      border-radius: 9999px;
+      color: #10b981;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+      white-space: nowrap;
+    }
+    .commission-status::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #10b981;
+      animation: statusPulse 2s infinite ease-in-out;
+    }
+    @keyframes statusPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
     footer {
-      margin-top: auto;        
+      margin-top: auto;
+      padding-top: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 14px;
+      font-weight: 500;
     }
 
-    @media (max-width:980px) {
+    @media (max-width: 980px) {
+      .container { margin: 20px; padding: 20px; }
+      header { justify-content: center; text-align: center; }
+      .commission-status { margin-top: 12px; }
       .grid { grid-template-columns: 1fr; }
-      .container { margin: 20px; }
-      header { flex-wrap: wrap; justify-content: center; gap: 16px; }
-      .comms-status { margin-top: 8px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- BLURRED VIDEO BACKGROUND (refreshing abstract tech particles) -->
+  <div class="video-background">
+    <video autoplay loop muted playsinline>
+      <source src="https://assets.mixkit.co/videos/preview/754/754-small.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
   <div class="container">
     <header>
-      <!-- Left side -->
-      <div style="display:flex;align-items:center;gap:20px">
+      <!-- Left: Avatar + Name -->
+      <div style="display:flex; align-items:center; gap:20px;">
         <div class="avatar">YN</div>
         <div>
           <h1>Kishuu</h1>
-          <p class="lead">Roblox Developer • Mainly Scripter • Gameplay Programmer </p>
-          <p class="lead" style="margin-top:6px;color:var(--muted)">Specializing in secure, optimized gameplay systems and professional OOP architecture</p>
+          <p class="lead">Roblox Developer • Mainly Scripter • Gameplay Programmer</p>
+          <p class="lead" style="margin-top:4px;">Specializing in secure, optimized gameplay systems and professional OOP architecture</p>
         </div>
       </div>
+
+      <!-- Right: Commission Status -->
+      <div class="commission-status">
+        Open for Commissions
+      </div>
     </header>
-    
-    <div class="grid">
+
+    <div class="grid" style="display:grid; grid-template-columns:1fr 360px; gap:24px; margin-top:32px; flex:1;">
       <main style="display:flex; flex-direction:column; gap:24px;">
+        
+        <!-- About -->
         <section class="card about">
           <h2>About</h2>
-          <p style="margin-top:8px">
+          <p style="margin-top:8px; font-size:15.5px; line-height:1.75;">
             I develop high-performance gameplay systems and tools for Roblox games,
             focusing on secure architecture and professional object-oriented (OOP) design.
             My code is optimized for speed, scalability, and maintainability, with strong
-            attention to exploit prevention and reliable server-side validation
+            attention to exploit prevention and reliable server-side validation.
           </p>
-          <div class="skills" aria-label="skills">
+          <div class="skills">
             <span class="skill">Luau</span>
             <span class="skill">Roblox API</span>
             <span class="skill">OOP Design</span>
@@ -157,37 +292,43 @@
           </div>
         </section>
 
+        <!-- Projects -->
         <section class="card">
           <h2>Projects/Systems</h2>
-          <div class="projects" style="margin-top:12px">
+          <div class="projects" style="margin-top:12px;">
             <article class="project">
               <h3>Project One — Fast Combat</h3>
               <p>Rewrote the combat system into a modular Knit service, introduced pooling and animation caching to reduce lag in heavy combat scenarios.</p>
               <div class="meta">
-                <a class="btn" href="project1.html">View</a>
-                <span style="color:var(--muted);font-size:13px">Lua · Knit · Server Authoritative</span>
+                <a class="btn" href="project1.html">View Project</a>
+                <span style="color:var(--muted); font-size:14px;">Lua • Knit • Server Authoritative</span>
               </div>
             </article>
           </div>
         </section>
       </main>
 
+      <!-- Sidebar -->
       <aside>
         <div class="card contact">
-          <h3>Contact</h3>
-          <div style="color:var(--muted);">E-mail: <a href="https://mail.google.com/mail/u/0/#sent?compose=GTvVlcSGLdbRjrHjNdfgNfMVZzNkKWLbDLbQJHRcLRXsDZqjSDLLMqDtLhjsSSJLjWFwSRpvqsBbh">7averagehuman7</a></div>
-          <div style="color:var(--muted);">GitHub: <a href="https://github.com/AverageKishuu" target="_blank">AverageKishuu</a></div>
-          <div style="color:var(--muted);">Roblox: <a href="https://www.roblox.com/users/4076103415/profile" target="_blank">Average_Kishuu</a></div>
-          <div style="color:var(--muted);">Discord: <a href="https://discord.com/users/1365355711164452945" target="_blank">average_kishuu</a></div>
-          <div style="margin-top:12px">
-            <a class="btn" href="https://discord.com/users/1365355711164452945">Start a Project!</a>
+          <h2 style="margin-bottom:16px;">Get in Touch</h2>
+          <div style="color:var(--muted); font-size:15px;">E-mail: <a href="https://mail.google.com/mail/u/0/#sent?compose=GTvVlcSGLdbRjrHjNdfgNfMVZzNkKWLbDLbQJHRcLRXsDZqjSDLLMqDtLhjsSSJLjWFwSRpvqsBbh">7averagehuman7</a></div>
+          <div style="color:var(--muted); font-size:15px;">GitHub: <a href="https://github.com/AverageKishuu" target="_blank">AverageKishuu</a></div>
+          <div style="color:var(--muted); font-size:15px;">Roblox: <a href="https://www.roblox.com/users/4076103415/profile" target="_blank">Average_Kishuu</a></div>
+          <div style="color:var(--muted); font-size:15px;">Discord: <a href="https://discord.com/users/1365355711164452945" target="_blank">average_kishuu</a></div>
+          
+          <div style="margin-top:24px;">
+            <a class="btn" href="https://discord.com/users/1365355711164452945" style="width:100%; justify-content:center;">
+              Start a Project!
+            </a>
           </div>
         </div>
       </aside>
     </div>
 
     <footer>
-      <div>Made By Kishuu</div>
+      <div>Made with ❤️ by Kishuu</div>
+      <div>Last updated: <span id="updated">2025-12-04</span></div>
     </footer>
   </div>
 </body>
