@@ -91,25 +91,39 @@
       font-weight: 500;
     }
 
-    /* GLASSY CARDS – More transparent & frosted (exactly what you asked for) */
-    .card, .project, .skill {
-  background: rgba(255, 255, 255, 0.2);          /* More transparent for that glass feel */
-  border: 1px solid rgba(255, 255, 255, 0.15);  /* subtle border */
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);     /* soft shadow for depth */
-  
-  backdrop-filter: blur(30px) saturate(180%) contrast(120%);
-  -webkit-backdrop-filter: blur(30px) saturate(180%) contrast(120%);
-  
-  transition: all 0.3s ease-in-out;
-}
+  .card {
+      /* Base transparency: Darker tint gives it depth against the video */
+      background: rgba(255, 255, 255, 0.15); 
+      
+      /* The Frosted Blur: Higher blur = smoother glass */
+      backdrop-filter: blur(40px) saturate(150%);
+      -webkit-backdrop-filter: blur(40px) saturate(150%);
+      
+      /* The "Shine" on the edge: Top/Left bright, Bottom/Right dark */
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      border-left: 1px solid rgba(255, 255, 255, 0.4);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      
+      border-radius: 20px;
+      padding: 28px;
+      
+      /* Inner and Outer Shadow for thickness */
+      box-shadow: 
+        0 25px 45px rgba(0, 0, 0, 0.2), 
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
+        
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      color: white; /* Important if your background video is dark */
+    }
 
-.card:hover, .project:hover, .skill:hover {
-  background: rgba(255, 255, 255, 0.25);       /* Slightly brighter on hover */
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px);
-}
+    .card:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-5px);
+      box-shadow: 
+        0 30px 50px rgba(0, 0, 0, 0.3), 
+        inset 0 0 30px rgba(255, 255, 255, 0.1);
+    }
 
     .about { line-height: 1.75; }
     .about h2, .projects h2 {
