@@ -12,15 +12,16 @@
     }
 
     /* FULL-SCREEN BLURRED VIDEO BACKGROUND */
-    .video-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-    }
+   .video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;   /* Use vw/vh for total viewport coverage */
+  height: 100vh;
+  z-index: -1;
+  background-color: #0f172a; /* Add a dark fallback color so you know it's working */
+  overflow: hidden;
+}
     .video-background video {
       width: 100%;
       height: 100%;
@@ -246,10 +247,9 @@
 
   <!-- BLURRED VIDEO BACKGROUND (refreshing abstract tech particles) -->
 <div class="video-background">
-  <video autoplay loop muted playsinline>
-    <source src="Videos/BgVideo.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+    <video autoplay loop muted playsinline poster="fallback-image.jpg">
+  <source src="./Videos/BgVideo.mp4" type="video/mp4">
+</video>
 </div>
 
   <div class="container">
