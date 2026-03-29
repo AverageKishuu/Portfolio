@@ -15,6 +15,7 @@
   --card-bg: rgba(255, 255, 255, 0.08);
   --border: rgba(255, 255, 255, 0.12);
   --accent-glow: rgba(20, 184, 166, 0.3);
+  --code-bg: rgba(0, 0, 0, 0.3);
 }
 
 .mouse-glow {
@@ -165,6 +166,29 @@ header p {
   line-height: 1.7;
 }
 
+.media-content video {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  margin-bottom: 20px;
+}
+
+pre {
+  background: var(--code-bg);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 14px;
+  color: #e2e8f0;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -258,19 +282,59 @@ footer {
 
       <div class="card">
         <h3>Spin Wheel System</h3>
+        <div class="media-content">
+          <video controls loop playsinline>
+            <source src="./Videos/Spin Wheel.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
         <p>
-          A fully customizable Spin Wheel system that handles rewards, chances, and animations. Perfect for daily login bonuses or in-game events.
-        </p>
-        <p style="margin-top: 12px; font-weight: 600; color: var(--accent);">
-          More details and video coming soon!
+          A fully secure and customizable Spin Wheel system that handles rewards, chances, and animations. Includes features like daily spins and bonus spins specifically for VIP players. Spins can be configured to use in-game currency or Robux, providing a flexible monetization or engagement tool for any game.
         </p>
       </div>
 
       <div class="card">
-        <h3>Utility Modules</h3>
+        <h3>Utility: UIManager (OOP)</h3>
+        <div class="media-content">
+          <video controls loop playsinline>
+            <source src="./Videos/UIManager.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
         <p>
-          Custom utility modules for handling data, signals, and UI animations, optimized for the modern Luau environment.
+          A fully Object-Oriented (OOP) UI management system that allows you to control complex UI flows with just a few lines of code. 
+          It features built-in "Slide" and "Pop" animations, along with a powerful Priority System. 
+          For example, a Priority 1 UI will automatically close other open UIs to maintain focus. 
+          The system also includes bulk commands like <code>ForceOpen</code> or <code>InstantClose</code> for advanced control.
         </p>
+        
+        <h4 style="margin: 24px 0 12px 0; color: #fff; font-size: 18px;">Implementation Example</h4>
+        <p>Easily add prioritized and animated UI elements:</p>
+        <pre><code>local UIManager = require(game.ReplicatedStorage:WaitForChild("UIManager"))
+
+local openButton = script.Parent:WaitForChild("Open")
+local MainFrame = script.Parent:WaitForChild("Main")
+
+-- Create a new UI object with "Pop" animation and Priority 3
+local ui = UIManager.new(MainFrame, "Pop", 3)
+
+openButton.MouseButton1Click:Connect(function()
+    if ui.IsOpen then
+        ui:Close()
+        return
+    end
+    ui:Open()
+end)</code></pre>
+
+        <h4 style="margin: 24px 0 12px 0; color: #fff; font-size: 18px;">Bulk Control Example</h4>
+        <p>Close or open all registered UIs at once:</p>
+        <pre><code>local UIManager = require(game.ReplicatedStorage:WaitForChild("UIManager"))
+
+script.Parent.MouseButton1Click:Connect(function()
+    for _, v in pairs(UIManager.AllUIs) do
+        v:ForceOpen() -- Or Close / InstantClose (For Closing Without Animation)
+    end
+end)</code></pre>
       </div>
     </div>
 
