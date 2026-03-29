@@ -284,7 +284,7 @@ footer {
         <h3>Spin Wheel System</h3>
         <div class="media-content">
           <video controls loop playsinline>
-            <source src="./Videos/Spin Wheel.mp4" type="video/mp4">
+            <source src="./Videos/Spin System.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </div>
@@ -302,9 +302,7 @@ footer {
           </video>
         </div>
         <p>
-          A fully Object-Oriented (OOP) UI management system that allows you to control complex UI flows with just a few lines of code. 
-          It features built-in "Slide" and "Pop" animations, along with a powerful Priority System. 
-          For example, a Priority 1 UI will automatically close other open UIs to maintain focus. 
+         A fully Object-Oriented (OOP) UI management system that allows you to control complex UI flows with just a few lines of code. It features built-in "Slide" and "Pop" animations, along with a powerful Priority System. For example, a Priority 1 UI will not be able to open when any other Priority 2 UI is opened, and an opening UI will automatically close other open UIs to maintain focus.
           The system also includes bulk commands like <code>ForceOpen</code> or <code>InstantClose</code> for advanced control.
         </p>
         
@@ -315,7 +313,7 @@ footer {
 local openButton = script.Parent:WaitForChild("Open")
 local MainFrame = script.Parent:WaitForChild("Main")
 
--- Create a new UI object with "Pop" animation and Priority 3
+-- Create a new UI object with "Pop" / "Slide" animation and Priority 3
 local ui = UIManager.new(MainFrame, "Pop", 3)
 
 openButton.MouseButton1Click:Connect(function()
