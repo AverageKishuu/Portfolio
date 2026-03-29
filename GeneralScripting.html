@@ -354,6 +354,20 @@ end)</code></pre>
       mouseGlow.style.left = e.clientX + 'px';
       mouseGlow.style.top = e.clientY + 'px';
     });
+
+    // Handle smooth scrolling to sections on page load
+    window.addEventListener('load', () => {
+      if (window.location.hash) {
+        const targetId = window.location.hash.substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          // Small delay to ensure layout is ready
+          setTimeout(() => {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    });
   </script>
 </body>
 </html>
