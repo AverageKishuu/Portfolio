@@ -194,10 +194,18 @@ pre {
   margin: 16px 0;
 }
 
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
-  font-size: 14px;
-  color: #e2e8f0;
+pre {
+  background: var(--code-bg);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  margin: 16px 0;
+  
+  /* THE FIX: Force the box to stay within the card */
+  max-width: 100%; 
+  overflow-x: auto; /* Adds a horizontal scrollbar ONLY inside the code box */
+  white-space: pre; /* Keeps code formatting */
+  word-wrap: normal;
 }
 
 .btn {
@@ -279,6 +287,15 @@ footer {
 
   pre {
     padding: 12px;
+    font-size: 12px; /* Smaller text fits more code on screen */
+    margin: 10px 0;
+    
+    /* Optional: Some people prefer code to wrap on mobile instead of scroll */
+    /* white-space: pre-wrap; */ 
+    /* word-break: break-all; */
+  }
+  
+  code {
     font-size: 12px;
   }
 }
