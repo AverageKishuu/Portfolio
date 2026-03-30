@@ -243,7 +243,7 @@ footer {
   <div class="container">
     <header>
       <h1>Escape Tsunami for anime Fruits</h1>
-      <p>A high-performance survival game built for viral engagement</p>
+      <p>Test project</p>
     </header>
 
     <div class="media-gallery">
@@ -258,11 +258,11 @@ footer {
         <h3>Synced Wave Generation</h3>
         <div class="media-content">
           <video controls loop playsinline>
-            <source src="./Videos/WavesOfBrainrots.mp4" type="video/mp4">
+            <source src="./Videos/WavesOfBrainrot.mp4" type="video/mp4">
           </video>
         </div>
         <p>
-          The server generates randomized waves (varying in height, width, and speed) and syncs them across all clients. This ensures fairness even for players joining mid-round. On touch, a custom physics-based ragdoll system triggers, throwing players back with calculated force. Fruits spawn dynamically at each stage, with luck-based rarity scaling as the player progresses further.
+          The server generates randomized waves (varying in height, width, and speed) and syncs them across all clients in batches. even for players joining mid-round-Client side loads, sync and times waves perfectly. On touch, a custom physics-based ragdoll system triggers, throwing players back with calculated force and killing them. Fruits spawn dynamically at each stage, with luck-based rarity scaling as the player progresses further.
         </p>
       </div>
 
@@ -270,23 +270,23 @@ footer {
         <h3>Carry & Retrieval Mechanics</h3>
         <div class="media-content">
           <video controls loop playsinline>
-            <source src="./Videos/CarryingBrainrots.mp4" type="video/mp4">
+            <source src="./Videos/CarryingBrainrot.mp4" type="video/mp4">
           </video>
         </div>
         <p>
-          A risk-reward mechanic where players must manually transport fruits to the finish line to convert them into tools. Touching a wave causes the player to drop their current load. I implemented a Carry Shop allowing players to purchase additional inventory slots, with exponentially increasing prices to drive long-term progression.
-        </p>
+          A risk-reward mechanic where players must manually transport fruits to the finish line to convert them into tools. Touching a wave causes the player to drop their current load. I implemented a Carry Shop allowing players to purchase additional slots for fruits, with exponentially increasing prices to drive long-term progression.
+        </p> 
       </div>
 
       <div class="card">
         <h3>Dynamic Speed Progression</h3>
         <div class="media-content">
           <video controls loop playsinline>
-            <source src="./Videos/SpeedShop.mp4" type="video/mp4">
+            <source src="./Videos/SpeedUpgradeOfBrainrot.mp4" type="video/mp4">
           </video>
         </div>
         <p>
-          To maintain game difficulty while providing a sense of power, I built a multi-tier Speed Shop (1x, 5x, and 10x sections). The pricing follows a specific formula that ensures the game remains challenging even as players become faster, keeping the gameplay loop addictive.
+          To maintain game difficulty while providing a sense of power, I built a multi-tier Speed Shop (1x, 5x, and 10x sections). The pricing follows a specific formula (Similar to "escape Tsunami for brainrots" one) that ensures the game remains challenging even as players become faster, keeping the gameplay loop addictive.
         </p>
       </div>
 
@@ -294,11 +294,11 @@ footer {
         <h3>Plot Management & Persistence</h3>
         <div class="media-content">
           <video controls loop playsinline>
-            <source src="./Videos/PlotSystem.mp4" type="video/mp4">
+            <source src="./Videos/PlotForBrainrots.mp4" type="video/mp4">
           </video>
         </div>
         <p>
-          A complex system allowing players to place collected fruit tools onto plot slots to generate passive income via "Claim Boxes." The system supports swapping, selling, and inventory management. Most importantly, all fruit stats and plot configurations use a robust DataStore wrapper to ensure 100% accurate saving and loading between sessions.
+          A complex system allowing players to place collected fruit tools onto plot slots to generate passive income via "Claim Boxes." The system supports swapping, selling, and Picking up. all fruit and their stats are saved and loaded.
         </p>
       </div>
     </div>  
