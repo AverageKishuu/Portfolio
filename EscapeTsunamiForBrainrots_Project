@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>General Scripting — Kishuu Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #14b8a6;
+  --text: #ffffff;
+  --muted: #cbd5e1;
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.12);
+  --accent-glow: rgba(20, 184, 166, 0.3);
+  --code-bg: rgba(0, 0, 0, 0.3);
+}
+
+.mouse-glow {
+  position: fixed;
+  top: 0; left: 0;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  background: transparent;
+  line-height: 1.6;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+  
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-color: #020617;
+  overflow: hidden;
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(12px) brightness(0.65) saturate(1.4);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  position: relative;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  background: linear-gradient(to right, #fff, var(--muted));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+header p {
+  margin: 12px 0 0 0;
+  font-size: 18px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.media-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2),
+              inset 0 0 20px rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  
+  /* THE FIX: Prevents the card from expanding wider than the screen */
+  min-width: 0; 
+  width: 100%;
+}
+
+.card:hover {
+  border-color: rgba(20, 184, 166, 0.5);
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4),
+              inset 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.card h3 {
+  margin: 24px 0 12px 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card h3::before {
+  content: '';
+  width: 4px;
+  height: 22px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.card.floating {
+  text-align: center;
+}
+.card.floating h3 {
+  justify-content: center; /* Centers the icon/text combo */
+}
+
+.card p {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+code {
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.media-content video {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  margin-top: 10px;
+  margin-bottom: 24px;
+}
+  
+pre {
+  background: var(--code-bg);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  margin: 16px 0;
+  
+  /* THE FIX: Force scroll inside the box */
+  max-width: 100%; 
+  overflow-x: auto; 
+  display: block;
+  white-space: pre;
+}
+
+pre {
+  background: var(--code-bg);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  margin: 16px 0;
+  
+  /* THE FIX: Force the box to stay within the card */
+  max-width: 100%; 
+  overflow-x: auto; /* Adds a horizontal scrollbar ONLY inside the code box */
+  white-space: pre; /* Keeps code formatting */
+  word-wrap: normal;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 28px;
+  border-radius: 14px;
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: 0 8px 20px var(--accent-glow);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px var(--accent-glow);
+  background: #15d1bd;
+}
+
+.btn-outline {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent);
+}
+
+footer {
+  margin-top: 60px;
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.footer-info {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px; 
+    margin: 20px auto;
+  }
+  
+  header h1 {
+    font-size: 28px;
+  }
+
+  .card {
+    padding: 24px 16px;
+  }
+
+  .card h3 {
+    font-size: 18px;
+  }
+
+  pre {
+    padding: 12px;
+    font-size: 12px; /* Smaller text fits more code on screen */
+    margin: 10px 0;
+    
+    /* Optional: Some people prefer code to wrap on mobile instead of scroll */
+    /* white-space: pre-wrap; */ 
+    /* word-break: break-all; */
+  }
+  
+  code {
+    font-size: 12px;
+  }
+}
+  
+</style>
+</head>
+<body>
+
+  <!-- BLURRED VIDEO BACKGROUND -->
+  <div class="video-background">
+    <video autoplay loop muted playsinline>
+      <source src="./Videos/BgVideo.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="mouse-glow" id="mouse-glow"></div>
+
+  <div class="container">
+    <header>
+      <h1>General Scripting</h1>
+      <p>A collection of various high-quality systems and utilities</p>
+    </header>
+
+    <div class="media-gallery">
+      <div class="card floating">
+        <h3>General Systems Showcase</h3>
+        <p>
+          This section features a variety of general scripting systems, from small utility modules to full-scale gameplay mechanics. Each system is designed with performance, security, and scalability in mind.
+        </p>
+      </div>
+
+      <div class="card" id="spin-wheel">
+        <h3>Spin Wheel System</h3>
+        <div class="media-content">
+          <video controls loop playsinline>
+            <source src="./Videos/Spin System.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p>
+          A fully secure and customizable Spin Wheel system that handles rewards, chances, and animations. Includes features like daily spins and bonus spins specifically for VIP players. Spins can be configured to use in-game currency or Robux, providing a flexible monetization or engagement tool for any game.
+        </p>
+      </div>
+
+     <div class="card" id="ui-manager">
+        <h3>Utility: UIManager (OOP)</h3>
+        <div class="media-content">
+          <video controls loop playsinline>
+            <source src="./Videos/UIManager.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+         <p>
+         A fully Object-Oriented (OOP) UI management system that allows you to control complex UI flows with just a few lines of code. It features built-in "Slide" and "Pop" animations, along with a powerful Priority System. For example, a Priority 1 UI will not be able to open when any other Priority 2 UI is opened, and an opening UI will automatically close other open UIs to maintain focus.
+          The system also includes bulk commands like <code>ForceOpen</code> or <code>InstantClose</code> for advanced control.
+        </p>
+        
+       <h4 style="margin: 24px 0 12px 0; color: #fff; font-size: 18px;">Implementation Example</h4>
+        <p>Easily add prioritized and animated UI elements:</p>
+        <pre><code>local UIManager = require(game.ReplicatedStorage:WaitForChild("UIManager"))
+          
+
+local openButton = script.Parent:WaitForChild("Open")
+local MainFrame = script.Parent:WaitForChild("Main")
+
+-- Create a new UI object with "Pop" / "Slide" animation and Priority 3
+local ui = UIManager.new(MainFrame, "Pop", 3)
+
+openButton.MouseButton1Click:Connect(function()
+    if ui.IsOpen then
+        ui:Close()
+        return
+    end
+    ui:Open()
+end)</code></pre>
+
+        <h4 style="margin: 24px 0 12px 0; color: #fff; font-size: 18px;">Bulk Control Example</h4>
+        <p>Close or open all registered UIs at once:</p>
+        <pre><code>local UIManager = require(game.ReplicatedStorage:WaitForChild("UIManager"))
+
+script.Parent.MouseButton1Click:Connect(function()
+    for _, v in pairs(UIManager.AllUIs) do
+        v:ForceOpen() -- Or Close / InstantClose (For Closing Without Animation)
+    end
+end)</code></pre>
+      </div>
+    </div>  
+
+    <footer>
+      <a class="btn btn-outline" href="index.html">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12,19 5,12 12,5"></polyline></svg>
+        Back to Home
+      </a>
+      <div class="footer-info">
+        <div>Made with ❤️ by Kishuu</div>
+        <div style="margin-top:4px;">Last updated: 2026-03-29</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const mouseGlow = document.getElementById('mouse-glow');
+    document.addEventListener('mousemove', (e) => {
+      mouseGlow.style.left = e.clientX + 'px';
+      mouseGlow.style.top = e.clientY + 'px';
+    });
+
+    // Handle smooth scrolling to sections on page load
+    window.addEventListener('load', () => {
+      if (window.location.hash) {
+        const targetId = window.location.hash.substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          // Small delay to ensure layout is ready
+          setTimeout(() => {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
