@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>General Scripting — Kishuu Portfolio</title>
+  <title>Escape Tsunami — Kishuu Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -132,8 +132,6 @@ header p {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
-  
-  /* THE FIX: Prevents the card from expanding wider than the screen */
   min-width: 0; 
   width: 100%;
 }
@@ -168,21 +166,14 @@ header p {
   text-align: center;
 }
 .card.floating h3 {
-  justify-content: center; /* Centers the icon/text combo */
+  justify-content: center;
 }
 
 .card p {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-
   overflow-wrap: break-word;
-  word-wrap: break-word;
-}
-
-code {
-  word-break: break-word;
-  white-space: pre-wrap;
 }
 
 .media-content video {
@@ -192,34 +183,6 @@ code {
   box-shadow: 0 8px 30px rgba(0,0,0,0.3);
   margin-top: 10px;
   margin-bottom: 24px;
-}
-  
-pre {
-  background: var(--code-bg);
-  padding: 20px;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  margin: 16px 0;
-  
-  /* THE FIX: Force scroll inside the box */
-  max-width: 100%; 
-  overflow-x: auto; 
-  display: block;
-  white-space: pre;
-}
-
-pre {
-  background: var(--code-bg);
-  padding: 20px;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  margin: 16px 0;
-  
-  /* THE FIX: Force the box to stay within the card */
-  max-width: 100%; 
-  overflow-x: auto; /* Adds a horizontal scrollbar ONLY inside the code box */
-  white-space: pre; /* Keeps code formatting */
-  word-wrap: normal;
 }
 
 .btn {
@@ -241,19 +204,12 @@ pre {
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 25px var(--accent-glow);
   background: #15d1bd;
 }
 
 .btn-outline {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border);
-  box-shadow: none;
-}
-
-.btn-outline:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--accent);
 }
 
 footer {
@@ -267,62 +223,18 @@ footer {
   align-items: center;
 }
 
-.footer-info {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.floating {
-  animation: float 6s ease-in-out infinite;
-}
-
 @media (max-width: 768px) {
-  .container {
-    padding: 16px; 
-    margin: 20px auto;
-  }
-  
-  header h1 {
-    font-size: 28px;
-  }
-
-  .card {
-    padding: 24px 16px;
-  }
-
-  .card h3 {
-    font-size: 18px;
-  }
-
-  pre {
-    padding: 12px;
-    font-size: 12px; /* Smaller text fits more code on screen */
-    margin: 10px 0;
-    
-    /* Optional: Some people prefer code to wrap on mobile instead of scroll */
-    /* white-space: pre-wrap; */ 
-    /* word-break: break-all; */
-  }
-  
-  code {
-    font-size: 12px;
-  }
+  header h1 { font-size: 28px; }
+  .card { padding: 24px 16px; }
+  .card h3 { font-size: 18px; }
 }
-  
 </style>
 </head>
 <body>
 
-  <!-- BLURRED VIDEO BACKGROUND -->
   <div class="video-background">
     <video autoplay loop muted playsinline>
       <source src="./Videos/BgVideo.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
   </div>
 
@@ -330,72 +242,64 @@ footer {
 
   <div class="container">
     <header>
-      <h1>General Scripting</h1>
-      <p>A collection of various high-quality systems and utilities</p>
+      <h1>Escape Tsunami for anime Fruits</h1>
+      <p>A high-performance survival game built for viral engagement</p>
     </header>
 
     <div class="media-gallery">
       <div class="card floating">
-        <h3>General Systems Showcase</h3>
+        <h3>Project Overview</h3>
         <p>
-          This section features a variety of general scripting systems, from small utility modules to full-scale gameplay mechanics. Each system is designed with performance, security, and scalability in mind.
+          Following current platform trends, this project is inspired by "Escape tsunami for Brainrots". I developed the core gameplay systems to be server-authoritative, scalable for high CCU, and heavily optimized for mobile players.
         </p>
       </div>
 
-      <div class="card" id="spin-wheel">
-        <h3>Spin Wheel System</h3>
+      <div class="card">
+        <h3>Synced Wave Generation</h3>
         <div class="media-content">
           <video controls loop playsinline>
-            <source src="./Videos/Spin System.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+            <source src="./Videos/WavesOfBrainrots.mp4" type="video/mp4">
           </video>
         </div>
         <p>
-          A fully secure and customizable Spin Wheel system that handles rewards, chances, and animations. Includes features like daily spins and bonus spins specifically for VIP players. Spins can be configured to use in-game currency or Robux, providing a flexible monetization or engagement tool for any game.
+          The server generates randomized waves (varying in height, width, and speed) and syncs them across all clients. This ensures fairness even for players joining mid-round. On touch, a custom physics-based ragdoll system triggers, throwing players back with calculated force. Fruits spawn dynamically at each stage, with luck-based rarity scaling as the player progresses further.
         </p>
       </div>
 
-     <div class="card" id="ui-manager">
-        <h3>Utility: UIManager (OOP)</h3>
+      <div class="card">
+        <h3>Carry & Retrieval Mechanics</h3>
         <div class="media-content">
           <video controls loop playsinline>
-            <source src="./Videos/UIManager.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+            <source src="./Videos/CarryingBrainrots.mp4" type="video/mp4">
           </video>
         </div>
-         <p>
-         A fully Object-Oriented (OOP) UI management system that allows you to control complex UI flows with just a few lines of code. It features built-in "Slide" and "Pop" animations, along with a powerful Priority System. For example, a Priority 1 UI will not be able to open when any other Priority 2 UI is opened, and an opening UI will automatically close other open UIs to maintain focus.
-          The system also includes bulk commands like <code>ForceOpen</code> or <code>InstantClose</code> for advanced control.
+        <p>
+          A risk-reward mechanic where players must manually transport fruits to the finish line to convert them into tools. Touching a wave causes the player to drop their current load. I implemented a Carry Shop allowing players to purchase additional inventory slots, with exponentially increasing prices to drive long-term progression.
         </p>
-        
-       <h4 style="margin: 24px 0 12px 0; color: #fff; font-size: 18px;">Implementation Example</h4>
-        <p>Easily add prioritized and animated UI elements:</p>
-        <pre><code>local UIManager = require(game.ReplicatedStorage:WaitForChild("UIManager"))
-          
+      </div>
 
-local openButton = script.Parent:WaitForChild("Open")
-local MainFrame = script.Parent:WaitForChild("Main")
+      <div class="card">
+        <h3>Dynamic Speed Progression</h3>
+        <div class="media-content">
+          <video controls loop playsinline>
+            <source src="./Videos/SpeedShop.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p>
+          To maintain game difficulty while providing a sense of power, I built a multi-tier Speed Shop (1x, 5x, and 10x sections). The pricing follows a specific formula that ensures the game remains challenging even as players become faster, keeping the gameplay loop addictive.
+        </p>
+      </div>
 
--- Create a new UI object with "Pop" / "Slide" animation and Priority 3
-local ui = UIManager.new(MainFrame, "Pop", 3)
-
-openButton.MouseButton1Click:Connect(function()
-    if ui.IsOpen then
-        ui:Close()
-        return
-    end
-    ui:Open()
-end)</code></pre>
-
-        <h4 style="margin: 24px 0 12px 0; color: #fff; font-size: 18px;">Bulk Control Example</h4>
-        <p>Close or open all registered UIs at once:</p>
-        <pre><code>local UIManager = require(game.ReplicatedStorage:WaitForChild("UIManager"))
-
-script.Parent.MouseButton1Click:Connect(function()
-    for _, v in pairs(UIManager.AllUIs) do
-        v:ForceOpen() -- Or Close / InstantClose (For Closing Without Animation)
-    end
-end)</code></pre>
+      <div class="card">
+        <h3>Plot Management & Persistence</h3>
+        <div class="media-content">
+          <video controls loop playsinline>
+            <source src="./Videos/PlotSystem.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p>
+          A complex system allowing players to place collected fruit tools onto plot slots to generate passive income via "Claim Boxes." The system supports swapping, selling, and inventory management. Most importantly, all fruit stats and plot configurations use a robust DataStore wrapper to ensure 100% accurate saving and loading between sessions.
+        </p>
       </div>
     </div>  
 
@@ -406,7 +310,7 @@ end)</code></pre>
       </a>
       <div class="footer-info">
         <div>Made with ❤️ by Kishuu</div>
-        <div style="margin-top:4px;">Last updated: 2026-03-29</div>
+        <div style="margin-top:4px;">Last updated: 2026-03-31</div>
       </div>
     </footer>
   </div>
@@ -416,20 +320,6 @@ end)</code></pre>
     document.addEventListener('mousemove', (e) => {
       mouseGlow.style.left = e.clientX + 'px';
       mouseGlow.style.top = e.clientY + 'px';
-    });
-
-    // Handle smooth scrolling to sections on page load
-    window.addEventListener('load', () => {
-      if (window.location.hash) {
-        const targetId = window.location.hash.substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          // Small delay to ensure layout is ready
-          setTimeout(() => {
-            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 100);
-        }
-      }
     });
   </script>
 </body>
