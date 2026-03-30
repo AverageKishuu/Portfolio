@@ -444,13 +444,19 @@ footer {
   flex: 1;
 }
 
-@media (max-width: 980px) {
-  .container { width: 90%; max-width: 500px; margin: 20px auto; padding: 24px; }
-  header { flex-direction: column; text-align: center; justify-content: center; }
-  .header-flex { flex-direction: column; text-align: center; }
-  .grid { grid-template-columns: 1fr !important; }
+@media (max-width: 768px) {
+  .container { margin: 20px auto; padding: 24px; }
+  header { flex-direction: column; text-align: center; }
+  .header-flex { flex-direction: column; text-align: center; gap: 16px; }
+  .grid { display: flex; flex-direction: column; gap: 32px; }
   .header-info h1 { font-size: 32px; }
   .card { padding: 20px; }
+  .contact-info { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 16px; }
+  .header-info h1 { font-size: 28px; }
   .contact-info { grid-template-columns: 1fr; }
 }
 </style>
