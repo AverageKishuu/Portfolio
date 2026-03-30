@@ -427,10 +427,42 @@ footer {
   font-size: 14px;
 }
 
-@media (max-width: 768px) {
-  .container { margin: 20px auto; padding: 24px; } /* Same as matchmaking */
-  .grid { display: flex !important; flex-direction: column !important; gap: 32px; }
-  .card { padding: 24px; }
+@media (max-width: 980px) {
+  .container {
+    margin: 20px auto;        /* ← This centers it perfectly */
+    padding: 16px 20px;       /* balanced left/right padding */
+  }
+  
+  header {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  header > div {              /* targets the avatar + name div */
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  
+  .header-info h1 {
+    font-size: 32px;
+  }
+  
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .card, .project {
+    padding: 24px;
+  }
 }
 </style>
 </head>
