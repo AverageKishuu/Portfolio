@@ -428,11 +428,19 @@ footer {
 }
 
 @media (max-width: 980px) {
-  .container { margin: 20px; padding: 16px; }
+  .container { margin: 20px auto; padding: 24px 32px; }
   header { flex-direction: column; text-align: center; justify-content: center; }
-  header div { flex-direction: column; }
-  .grid { grid-template-columns: 1fr !important; }
+  header div { flex-direction: column; width: 100%; }
+  .grid { grid-template-columns: 1fr !important; gap: 32px !important; }
   .header-info h1 { font-size: 32px; }
+  .avatar { width: 80px; height: 80px; }
+}
+
+@media (max-width: 480px) {
+  .container { margin: 15px auto; padding: 15px 40px; }
+  .header-info h1 { font-size: 28px; }
+  .lead { font-size: 14px; }
+  .card, .project { padding: 20px; border-radius: 20px; }
 }
 </style>
 </head>
