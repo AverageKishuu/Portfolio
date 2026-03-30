@@ -52,21 +52,19 @@ html, body {
   color: var(--text);
   background: transparent;
   line-height: 1.6;
-  overflow-x: hidden; /* Prevent horizontal scroll on mobile */
 }
 
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
 }
 
 .video-background {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%; /* Changed from 100vw to 100% */
+  width: 100%; 
   height: 100%;
   z-index: -1;
   background-color: #020617; /* Fallback for when video fails */
@@ -439,7 +437,7 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .container { margin: 15px auto; padding: 15px 40px; }
+  .container { margin: 15px auto; padding: 15px 55px; }
   .header-info h1 { font-size: 28px; }
   .lead { font-size: 14px; }
   .card, .project { padding: 20px; border-radius: 20px; }
