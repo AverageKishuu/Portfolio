@@ -132,6 +132,10 @@ header p {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
+  
+  /* THE FIX: Prevents the card from expanding wider than the screen */
+  min-width: 0; 
+  width: 100%;
 }
 
 .card:hover {
@@ -190,8 +194,13 @@ pre {
   padding: 20px;
   border-radius: 16px;
   border: 1px solid var(--border);
-  overflow-x: auto;
   margin: 16px 0;
+  
+  /* THE FIX: Force scroll inside the box */
+  max-width: 100%; 
+  overflow-x: auto; 
+  display: block;
+  white-space: pre;
 }
 
 pre {
