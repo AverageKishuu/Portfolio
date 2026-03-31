@@ -444,6 +444,56 @@ footer {
   .grid { display: flex; flex-direction: column; gap: 32px; }
   .header-info h1 { font-size: 32px; }
 }
+
+.games-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scroll-behavior: smooth;
+}
+
+.game-mini {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  flex-shrink: 0;
+  width: 90px;
+}
+
+.game-mini img {
+  width: 90px;
+  height: 90px;
+  border-radius: 14px;
+  border: 2px solid rgba(255,255,255,0.15);
+  object-fit: cover;
+  transition: 0.3s;
+}
+
+.game-mini span {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  font-weight: 600;
+}
+
+.game-mini:hover img {
+  transform: scale(1.08);
+  border-color: var(--accent);
+}
+
+/* Custom scrollbar */
+.games-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.games-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
+   
 </style>
 </head>
 <body>
@@ -562,28 +612,25 @@ footer {
            </div>
          </div>
 
-         <div class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 12px;">
-   <h2 style="margin: 0; font-size: 16px;">Games Scripted by me</h2>
-   
-   <div class="game-card-thumb">
-       <img src="https://www.roblox.com/asset-thumbnail/image?assetId=107390875275759&width=768&height=432&format=png" alt="Grow a Farm Thumbnail">
-   </div>
+        <div class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 12px;">
+<h2 style="margin: 0; font-size: 16px;">Games Scripted by me</h2>
 
-   <div style="display: flex; flex-direction: column; gap: 4px;">
-       <span style="font-weight: 800; font-size: 15px; color: #fff;">Grow a Farm</span>
-       <p style="margin: 0; font-size: 13px; color: var(--muted); line-height: 1.4;">
-          Integrated core gameplay loops, automated farming systems, and optimized data persistence for this experience.
-       </p>
-   </div>
+<!-- Scrollable Games Row -->
+<div class="games-scroll">
 
-   <a href="https://www.roblox.com/games/107390875275759/Grow-a-Farm" target="_blank" class="btn" style="width: 100%; padding: 10px; font-size: 13px; margin-top: 4px;">
-       View on Roblox
-       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;">
-           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-           <polyline points="15 3 21 3 21 9"></polyline>
-           <line x1="10" y1="14" x2="21" y2="3"></line>
-       </svg>
-   </a>
+<!-- Game -->
+<a href="https://www.roblox.com/games/107390875275759/Grow-a-Farm" target="_blank" class="game-mini">
+<img src="https://thumbnails.roblox.com/v1/places/gameicons?placeIds=107390875275759&size=512x512&format=Png">
+<span>Grow a Farm</span>
+</a>
+
+<a href="https://www.roblox.com/games/PLACE_ID/Game-Name" target="_blank" class="game-mini">
+<img src="https://thumbnails.roblox.com/v1/places/gameicons?placeIds=PLACE_ID&size=512x512&format=Png">
+<span>Game Name</span>
+</a>
+
+</div>
+
 </div>
 
       </aside>
