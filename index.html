@@ -67,7 +67,7 @@ body {
   width: 100%; 
   height: 100%;
   z-index: -1;
-  background-color: #020617; /* Fallback for when video fails */
+  background-color: #020617; 
   overflow: hidden;
 }
 
@@ -137,6 +137,41 @@ header {
   object-fit: cover;
 }
 
+/* 3D Game Thumbnail Style matching Avatar */
+.game-card-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3), 
+              inset 0 0 15px rgba(255,255,255,0.05);
+  margin-bottom: 12px;
+}
+
+.game-card-thumb::after {
+   content: '';
+   position: absolute;
+   top: 0; left: 0; right: 0; bottom: 0;
+   border-radius: 16px;
+   box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.08),
+               inset -2px -2px 5px rgba(0, 0, 0, 0.2);
+   pointer-events: none;
+}
+
+.game-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .game-card-thumb img {
+  transform: scale(1.08);
+}
+
 .header-info {
   flex: 1;
 }
@@ -161,8 +196,7 @@ header {
    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
  } 
   
- /* CARD GLASS EFFECT */ 
-  .card, .project { 
+ .card, .project { 
     background: var(--card-bg); 
     border: 1px solid var(--border); 
     border-radius: 24px; 
@@ -185,29 +219,7 @@ header {
                inset 0 0 30px rgba(255, 255, 255, 0.1); 
  }
 
- .card::before {
-   content: '';
-   position: absolute;
-   top: 0; left: -100%;
-   width: 50%;
-   height: 100%;
-   background: linear-gradient(
-     to right,
-     transparent,
-     rgba(255, 255, 255, 0.1),
-     transparent
-   );
-   transform: skewX(-25deg);
-   transition: 0.75s;
-   pointer-events: none;
- }
-
- .card:hover::before {
-   left: 150%;
- }
-  
- /* Sections */ 
- h2 { 
+h2 { 
    font-size: 20px; 
    margin: 0 0 20px 0; 
    font-weight: 700; 
@@ -252,13 +264,7 @@ h2::before {
   transition: all 0.3s ease;
 }
 
-.skill:hover {
-  background: rgba(20, 184, 166, 0.2);
-  transform: scale(1.05);
-}
-
-/* Projects */ 
- .projects { 
+.projects { 
    display: flex; 
    flex-direction: column; 
    gap: 20px; 
@@ -300,7 +306,6 @@ h2::before {
   flex-wrap: wrap;
 }
 
-/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -316,6 +321,7 @@ h2::before {
   box-shadow: 0 8px 20px var(--accent-glow);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   border: none;
+  cursor: pointer;
 }
 
 .btn:hover {
@@ -330,13 +336,6 @@ h2::before {
   box-shadow: none;
 }
 
-.btn-outline:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-}
-
-/* Contact / Status */
 aside {
   display: flex;
   flex-direction: column;
@@ -350,21 +349,21 @@ aside {
  } 
   
  .contact-item { 
-     display: flex; 
-     flex-direction: column;
-     align-items: center; 
-     justify-content: center;
-     gap: 4px; 
-     padding: 12px;
-     background: rgba(255, 255, 255, 0.05); 
-     border: 1px solid var(--border);
-     border-radius: 12px;
-     color: var(--muted); 
-     font-size: 13px; 
-     text-decoration: none; 
-     transition: all 0.3s ease; 
-   } 
-   
+      display: flex; 
+      flex-direction: column;
+      align-items: center; 
+      justify-content: center;
+      gap: 4px; 
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05); 
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--muted); 
+      font-size: 13px; 
+      text-decoration: none; 
+      transition: all 0.3s ease; 
+    } 
+    
   .contact-item:hover { 
     background: rgba(255, 255, 255, 0.06);
     border-color: rgba(255, 255, 255, 0.2);
@@ -381,35 +380,31 @@ aside {
   } 
    
   .commission-status { 
-       display: flex; 
-       align-items: center; 
-       justify-content: center;
-       gap: 10px; 
-       padding: 12px; 
-       background: var(--card-bg); 
-       border: 2px solid rgba(16, 185, 129, 0.6); 
-       border-radius: 18px; 
-       color: #10b981; 
-       font-weight: 800; 
-       font-size: 13px; 
-       letter-spacing: 1px; 
-       text-transform: uppercase;
-       backdrop-filter: blur(40px) saturate(200%);
-       -webkit-backdrop-filter: blur(40px) saturate(200%);
-       box-shadow: 0 0 20px rgba(16, 185, 129, 0.4),
-                   inset 0 0 15px rgba(255, 255, 255, 0.1);
-       text-shadow: 0 0 12px rgba(16, 185, 129, 0.8);
-       margin-bottom: -10px;
-       animation: float 6s ease-in-out infinite;
-     }
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        gap: 10px; 
+        padding: 12px; 
+        background: var(--card-bg); 
+        border: 2px solid rgba(16, 185, 129, 0.6); 
+        border-radius: 18px; 
+        color: #10b981; 
+        font-weight: 800; 
+        font-size: 13px; 
+        letter-spacing: 1px; 
+        text-transform: uppercase;
+        backdrop-filter: blur(40px) saturate(200%);
+        -webkit-backdrop-filter: blur(40px) saturate(200%);
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.4),
+                    inset 0 0 15px rgba(255, 255, 255, 0.1);
+        text-shadow: 0 0 12px rgba(16, 185, 129, 0.8);
+        margin-bottom: -10px;
+        animation: float 6s ease-in-out infinite;
+      }
 
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
-  }
-
-  aside .card {
-    animation: float 6s ease-in-out infinite 1s;
   }
 
 .commission-status::before {
@@ -446,25 +441,13 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .container { margin: 20px auto; padding: 24px; }
-  header { flex-direction: column; text-align: center; }
-  .header-flex { flex-direction: column; text-align: center; gap: 16px; }
   .grid { display: flex; flex-direction: column; gap: 32px; }
   .header-info h1 { font-size: 32px; }
-  .card { padding: 20px; }
-  .contact-info { grid-template-columns: 1fr 1fr; }
-}
-
-@media (max-width: 480px) {
-  .container { padding: 16px; }
-  .header-info h1 { font-size: 28px; }
-  .contact-info { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-  <!-- BLURRED VIDEO BACKGROUND --> 
    <div class="video-background"> 
      <video autoplay loop muted playsinline> 
        <source src="./Videos/BgVideo.mp4" type="video/mp4"> 
@@ -476,7 +459,6 @@ footer {
 
    <div class="container">
     <header>
-      <!-- Left: Avatar + Name -->
       <div class="header-flex"> 
           <div class="avatar">
             <img src="https://github.com/AverageKishuu.png" alt="Kishuu Avatar">
@@ -492,7 +474,6 @@ footer {
       <div class="grid">
       <main style="display:flex; flex-direction:column; gap:32px; width:100%;">
         
-        <!-- About -->
         <section class="card about">
           <h2>About</h2>
           <p>
@@ -510,65 +491,41 @@ footer {
           </div>
         </section>
 
-        <!-- Projects --> 
          <section class="card"> 
            <h2>Systems</h2> 
            <div class="projects"> 
              <article class="project"> 
                <h3>Quests & Dialogue</h3> 
-               <p>A dual-track quest framework combining story-driven NPC dialogue with automated daily, weekly, and VIP tasks. This setup balances immersive, one-at-a-time missions with timed objectives to maximize player engagement and long-term retention.</p> 
+               <p>A dual-track quest framework combining story-driven NPC dialogue with automated daily, weekly, and VIP tasks.</p> 
                <div class="meta"> 
                  <a class="btn" href="QuestsAndDialogue.html">View</a> 
                  <div class="meta-tags"> 
-                   <span>Daily Tasks</span> • <span>Interactive Dialogue</span> • <span>Dual-Track Quests</span> 
-                 </div> 
-               </div> 
-             </article> 
-
-             <article class="project"> 
-               <h3>Matchmaking & Leaderboard</h3> 
-               <p>A seamless matchmaking system that handles player queues and cross-server teleportation, paired with a dynamic global leaderboard featuring top-tier player rankings and celebratory animations.</p> 
-               <div class="meta"> 
-                 <a class="btn" href="MatchmakingAndLeaderboard.html">View</a> 
-                 <div class="meta-tags"> 
-                   <span>Matchmaking</span> • <span>Teleportation</span> • <span>Global Leaderboard</span> 
+                   <span>Daily Tasks</span> • <span>Interactive Dialogue</span> 
                  </div> 
                </div> 
              </article> 
            </div> 
          </section>
 
-        <!-- Projects -->
-<section class="card">
-  <h2>Projects</h2>
-  <div class="projects">
-
-    <article class="project">
-      <h3>Escape Tsunami for Anime Fruits</h3>
-      <p>
-        An unfinished project inspired by the Escape Tsunami genre, 
-        created for Anime Fruits. Following current brainrot trends,
-        I started this project to test my skills toward new trending games.
-      </p>
-      <div class="meta">
-        <a class="btn" href="EscapeTsunamiForAnimeFruits_Project.html">View</a>
-        <div class="meta-tags">
-          <span>Trend</span> • <span>Test Project</span> • <span>Optimized</span>
-        </div>
-      </div>
-    </article>
-
-  </div>
-</section>
-        
+        <section class="card">
+          <h2>Projects</h2>
+          <div class="projects">
+            <article class="project">
+              <h3>Escape Tsunami for Anime Fruits</h3>
+              <p>An unfinished project inspired by the Escape Tsunami genre created for Anime Fruits.</p>
+              <div class="meta">
+                <a class="btn" href="EscapeTsunamiForAnimeFruits_Project.html">View</a>
+                <div class="meta-tags">
+                  <span>Trend</span> • <span>Optimized</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
       </main>
 
-      <!-- Sidebar -->
       <aside>
-        <!-- Commission Status (Magnifying Glass Blur) -->
-        <div class="commission-status">
-          Open for Commissions
-        </div>
+        <div class="commission-status">Open for Commissions</div>
 
         <div class="card contact"> 
            <h2 style="margin-bottom:24px;">Get in Touch</h2> 
@@ -581,31 +538,14 @@ footer {
                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg> 
                <span>GitHub</span> 
              </a> 
-             <a href="https://www.roblox.com/users/4076103415/profile" target="_blank" class="contact-item">  
-               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"> 
-                 <path d="M18.926 23.998 0 18.892 5.075.002 24 5.108ZM15.348 10.09l-5.282-1.453-1.414 5.273 5.282 1.453z" /> 
-               </svg> 
-               <span>Roblox</span>  
-             </a> 
-             <a href="https://discord.com/users/1365355711164452945" target="_blank" class="contact-item"> 
-               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"> 
-                 <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"></path> 
-               </svg> 
-               <span>Discord</span> 
-             </a> 
            </div> 
             
            <div style="margin-top:24px; display:flex; flex-direction:column; gap:12px;"> 
-             <a class="btn" href="https://discord.com/users/1365355711164452945" style="width:100%;"> 
-               Start a Project! 
-             </a> 
-             <a class="btn btn-outline" href="terms.html" style="width:100%; font-size:13px;"> 
-               Terms & Rules 
-             </a> 
+             <a class="btn" href="https://discord.com/users/1365355711164452945" style="width:100%;">Start a Project!</a> 
+             <a class="btn btn-outline" href="terms.html" style="width:100%; font-size:13px;">Terms & Rules</a> 
            </div> 
          </div>
 
-         <!-- New Interactive Card -->
          <div class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px;">
            <h2 style="margin: 0; font-size: 16px;">General Scripting</h2>
            <div style="display: flex; flex-direction: column; gap: 12px;">
@@ -619,25 +559,35 @@ footer {
                  <span style="color: var(--accent); margin-top: 4px; font-size: 10px;">UI Manager</span>
                </a>
              </div>
-             <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px;">
-               <div style="flex: 1; height: 1px; background: var(--border);"></div>
-               <div style="display: flex; flex-direction: row; gap: 6px; font-weight: 800; font-size: 10px; text-transform: uppercase; color: var(--muted); opacity: 0.6; letter-spacing: 1px; white-space: nowrap;">
-                 <span>More</span>
-                 <span>Will</span>
-                 <span>Be</span>
-                 <span>Added</span>
-                 <span>Soon</span>
-               </div>
-               <div style="flex: 1; height: 1px; background: var(--border);"></div>
-             </div>
            </div>
          </div>
+
+         <div class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 12px;">
+            <h2 style="margin: 0; font-size: 16px;">Games Scripted by me</h2>
+            
+            <div class="game-card-thumb">
+                <img src="https://tr.rbxcdn.com/180DAY-9276532454b50c53c400263889606869/768/432/Image/Webp/noFilter" alt="Game Thumbnail">
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+                <span style="font-weight: 800; font-size: 15px; color: #fff;">Super Game Adventure</span>
+                <p style="margin: 0; font-size: 13px; color: var(--muted); line-height: 1.4;">
+                   Developed full combat systems, data persistence, and custom UI framework for this front-page experience.
+                </p>
+            </div>
+
+            <a href="https://www.roblox.com/games/YOUR_GAME_ID" target="_blank" class="btn" style="width: 100%; padding: 10px; font-size: 13px; margin-top: 4px;">
+                Play Game
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+         </div>
+
       </aside>
     </div>
 
     <footer> 
-       <div>Made with ❤️ by Kishuu</div> 
-       <div>Last updated: <span id="updated">2026-03-28</span></div> 
+        <div>Made with ❤️ by Kishuu</div> 
+        <div>Last updated: <span id="updated">2026-03-31</span></div> 
      </footer> 
    </div> 
   
@@ -648,5 +598,5 @@ footer {
        mouseGlow.style.top = e.clientY + 'px';
      });
    </script>
- </body> 
- </html>
+</body> 
+</html>
