@@ -132,8 +132,6 @@ header p {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
-  
-  /* THE FIX: Prevents the card from expanding wider than the screen */
   min-width: 0; 
   width: 100%;
 }
@@ -168,14 +166,13 @@ header p {
   text-align: center;
 }
 .card.floating h3 {
-  justify-content: center; /* Centers the icon/text combo */
+  justify-content: center;
 }
 
 .card p {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
@@ -194,8 +191,27 @@ code {
   margin-bottom: 24px;
 }
 
-/* Adjust layout spacing for asset containers that have no trailing description text */
-.card .media-content:last-child video {
+/* Two-column media split configuration for mixed items */
+.media-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.media-split h4 {
+  margin: 0 0 8px 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.media-split video {
+  margin-bottom: 12px;
+}
+
+.card .media-content:last-child video,
+.media-split div:last-child video {
   margin-bottom: 10px;
 }
   
@@ -205,8 +221,6 @@ pre {
   border-radius: 16px;
   border: 1px solid var(--border);
   margin: 16px 0;
-  
-  /* THE FIX: Force scroll inside the box */
   max-width: 100%; 
   overflow-x: auto; 
   display: block;
@@ -219,11 +233,9 @@ pre {
   border-radius: 16px;
   border: 1px solid var(--border);
   margin: 16px 0;
-  
-  /* THE FIX: Force the box to stay within the card */
   max-width: 100%; 
-  overflow-x: auto; /* Adds a horizontal scrollbar ONLY inside the code box */
-  white-space: pre; /* Keeps code formatting */
+  overflow-x: auto; 
+  white-space: pre; 
   word-wrap: normal;
 }
 
@@ -304,14 +316,15 @@ footer {
     font-size: 18px;
   }
 
+  .media-split {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
   pre {
     padding: 12px;
-    font-size: 12px; /* Smaller text fits more code on screen */
+    font-size: 12px; 
     margin: 10px 0;
-    
-    /* Optional: Some people prefer code to wrap on mobile instead of scroll */
-    /* white-space: pre-wrap; */ 
-    /* word-break: break-all; */
   }
   
   code {
@@ -347,6 +360,21 @@ footer {
         </p>
       </div>
 
+      <!-- NEW TOP SECTION: CAN'T LOOK AWAY -->
+      <div class="card" id="cant-look-away">
+        <h3>Can't look away..</h3>
+        <div class="media-content">
+          <video controls loop playsinline>
+            <source src="./Videos/CantLookAway.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p>
+          An immersive visual or mechanics package structured to captivate player attention seamlessly. Features high-fidelity loop logic, micro-feedback layers, and deeply interactive environments that maximize player retention.
+        </p>
+      </div>
+
+      <!-- SPIN WHEEL (MOVED DOWN) -->
       <div class="card" id="spin-wheel">
         <h3>Spin Wheel System</h3>
         <div class="media-content">
@@ -403,25 +431,27 @@ script.Parent.MouseButton1Click:Connect(function()
 end)</code></pre>
       </div>
 
-      <!-- NEW SECTION: REVERSE GRAVITY CLICKER EFFECT -->
-      <div class="card" id="reverse-gravity">
-        <h3>Reverse Gravity Clicker Effect</h3>
-        <div class="media-content">
-          <video controls loop playsinline>
-            <source src="./Videos/Clicker To Flower.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-
-      <!-- NEW SECTION: MOUSE VACUUM CLICKER EFFECT -->
-      <div class="card" id="mouse-vacuum">
-        <h3>Mouse Vacuum Clicker Effect</h3>
-        <div class="media-content">
-          <video controls loop playsinline>
-            <source src="./Videos/Upgraded CLicker.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+      <!-- COMBINED SECTION: CLICKER EFFECTS SHOWCASE -->
+      <div class="card" id="clicker-showcase">
+        <h3>Clicker Gameplay Effects</h3>
+        <p style="margin-bottom: 24px;">
+          Advanced physical interactions designed specifically for clicker simulators, managing spatial asset deployment, smooth engine calculations, and crisp tracking.
+        </p>
+        <div class="media-split">
+          <div>
+            <h4>Reverse Gravity Effect</h4>
+            <video controls loop playsinline>
+              <source src="./Videos/Clicker To Flower.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div>
+            <h4>Mouse Vacuum Effect</h4>
+            <video controls loop playsinline>
+              <source src="./Videos/Upgraded CLicker.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
       </div>
 
@@ -452,7 +482,6 @@ end)</code></pre>
         const targetId = window.location.hash.substring(1);
         const targetElement = document.getElementById(targetId);
         if (targetElement) {
-          // Small delay to ensure layout is ready
           setTimeout(() => {
             targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }, 100);
