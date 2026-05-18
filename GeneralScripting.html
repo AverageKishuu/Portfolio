@@ -132,8 +132,6 @@ header p {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
-  
-  /* THE FIX: Prevents the card from expanding wider than the screen */
   min-width: 0; 
   width: 100%;
 }
@@ -164,18 +162,36 @@ header p {
   border-radius: 2px;
 }
 
+/* Added design standards for video labels inside custom cards */
+.card h4 {
+  margin: 28px 0 12px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card h4::before {
+  content: '';
+  width: 3px;
+  height: 16px;
+  background: rgba(20, 184, 166, 0.6);
+  border-radius: 1.5px;
+}
+
 .card.floating {
   text-align: center;
 }
 .card.floating h3 {
-  justify-content: center; /* Centers the icon/text combo */
+  justify-content: center; 
 }
 
 .card p {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
@@ -193,6 +209,11 @@ code {
   margin-top: 10px;
   margin-bottom: 24px;
 }
+
+/* Removes bottom spacing on the last component element inside card panels */
+.media-content:last-of-type video {
+  margin-bottom: 10px;
+}
   
 pre {
   background: var(--code-bg);
@@ -200,8 +221,6 @@ pre {
   border-radius: 16px;
   border: 1px solid var(--border);
   margin: 16px 0;
-  
-  /* THE FIX: Force scroll inside the box */
   max-width: 100%; 
   overflow-x: auto; 
   display: block;
@@ -214,11 +233,9 @@ pre {
   border-radius: 16px;
   border: 1px solid var(--border);
   margin: 16px 0;
-  
-  /* THE FIX: Force the box to stay within the card */
   max-width: 100%; 
-  overflow-x: auto; /* Adds a horizontal scrollbar ONLY inside the code box */
-  white-space: pre; /* Keeps code formatting */
+  overflow-x: auto; 
+  white-space: pre; 
   word-wrap: normal;
 }
 
@@ -299,14 +316,14 @@ footer {
     font-size: 18px;
   }
 
+  .card h4 {
+    font-size: 15px;
+  }
+
   pre {
     padding: 12px;
-    font-size: 12px; /* Smaller text fits more code on screen */
+    font-size: 12px; 
     margin: 10px 0;
-    
-    /* Optional: Some people prefer code to wrap on mobile instead of scroll */
-    /* white-space: pre-wrap; */ 
-    /* word-break: break-all; */
   }
   
   code {
@@ -355,7 +372,7 @@ footer {
         </p>
       </div>
 
-     <div class="card" id="ui-manager">
+      <div class="card" id="ui-manager">
         <h3>Utility: UIManager (OOP)</h3>
         <div class="media-content">
           <video controls loop playsinline>
@@ -368,7 +385,7 @@ footer {
           The system also includes bulk commands like <code>ForceOpen</code> or <code>InstantClose</code> for advanced control.
         </p>
         
-       <h4 style="margin: 24px 0 12px 0; color: #fff; font-size: 18px;">Implementation Example</h4>
+        <h4>Implementation Example</h4>
         <p>Easily add prioritized and animated UI elements:</p>
         <pre><code>local UIManager = require(game.ReplicatedStorage:WaitForChild("UIManager"))
           
@@ -387,7 +404,7 @@ openButton.MouseButton1Click:Connect(function()
     ui:Open()
 end)</code></pre>
 
-        <h4 style="margin: 24px 0 12px 0; color: #fff; font-size: 18px;">Bulk Control Example</h4>
+        <h4>Bulk Control Example</h4>
         <p>Close or open all registered UIs at once:</p>
         <pre><code>local UIManager = require(game.ReplicatedStorage:WaitForChild("UIManager"))
 
@@ -397,6 +414,28 @@ script.Parent.MouseButton1Click:Connect(function()
     end
 end)</code></pre>
       </div>
+
+      <!-- NEW SECTION: CLICKER EFFECT SHOWCASE -->
+      <div class="card" id="clicker-effect">
+        <h3>Clicker Effect</h3>
+        
+        <h4>Flower Attraction</h4>
+        <div class="media-content">
+          <video controls loop playsinline>
+            <source src="./Videos/Flower Attraction.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <h4>Mouse Vacuum</h4>
+        <div class="media-content">
+          <video controls loop playsinline>
+            <source src="./Videos/Mouse Vacuum.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+
     </div>  
 
     <footer>
@@ -424,7 +463,6 @@ end)</code></pre>
         const targetId = window.location.hash.substring(1);
         const targetElement = document.getElementById(targetId);
         if (targetElement) {
-          // Small delay to ensure layout is ready
           setTimeout(() => {
             targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }, 100);
