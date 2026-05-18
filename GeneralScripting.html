@@ -132,6 +132,8 @@ header p {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
+  
+  /* THE FIX: Prevents the card from expanding wider than the screen */
   min-width: 0; 
   width: 100%;
 }
@@ -166,13 +168,14 @@ header p {
   text-align: center;
 }
 .card.floating h3 {
-  justify-content: center;
+  justify-content: center; /* Centers the icon/text combo */
 }
 
 .card p {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
@@ -190,30 +193,6 @@ code {
   margin-top: 10px;
   margin-bottom: 24px;
 }
-
-/* Two-column media split configuration for mixed items */
-.media-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-bottom: 16px;
-}
-
-.media-split h4 {
-  margin: 0 0 8px 0;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.media-split video {
-  margin-bottom: 12px;
-}
-
-.card .media-content:last-child video,
-.media-split div:last-child video {
-  margin-bottom: 10px;
-}
   
 pre {
   background: var(--code-bg);
@@ -221,6 +200,8 @@ pre {
   border-radius: 16px;
   border: 1px solid var(--border);
   margin: 16px 0;
+  
+  /* THE FIX: Force scroll inside the box */
   max-width: 100%; 
   overflow-x: auto; 
   display: block;
@@ -233,9 +214,11 @@ pre {
   border-radius: 16px;
   border: 1px solid var(--border);
   margin: 16px 0;
+  
+  /* THE FIX: Force the box to stay within the card */
   max-width: 100%; 
-  overflow-x: auto; 
-  white-space: pre; 
+  overflow-x: auto; /* Adds a horizontal scrollbar ONLY inside the code box */
+  white-space: pre; /* Keeps code formatting */
   word-wrap: normal;
 }
 
@@ -316,15 +299,14 @@ footer {
     font-size: 18px;
   }
 
-  .media-split {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
   pre {
     padding: 12px;
-    font-size: 12px; 
+    font-size: 12px; /* Smaller text fits more code on screen */
     margin: 10px 0;
+    
+    /* Optional: Some people prefer code to wrap on mobile instead of scroll */
+    /* white-space: pre-wrap; */ 
+    /* word-break: break-all; */
   }
   
   code {
@@ -360,18 +342,6 @@ footer {
         </p>
       </div>
 
-      <!-- NEW TOP SECTION: CAN'T LOOK AWAY -->
-      <div class="card" id="cant-look-away">
-        <h3>Can't look away..</h3>
-        <div class="media-content">
-          <video controls loop playsinline>
-            <source src="./Videos/Can't look away 2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-
-      <!-- SPIN WHEEL (MOVED DOWN) -->
       <div class="card" id="spin-wheel">
         <h3>Spin Wheel System</h3>
         <div class="media-content">
@@ -385,7 +355,7 @@ footer {
         </p>
       </div>
 
-      <div class="card" id="ui-manager">
+     <div class="card" id="ui-manager">
         <h3>Utility: UIManager (OOP)</h3>
         <div class="media-content">
           <video controls loop playsinline>
@@ -427,30 +397,6 @@ script.Parent.MouseButton1Click:Connect(function()
     end
 end)</code></pre>
       </div>
-
-      <!-- COMBINED SECTION: CLICKER EFFECTS SHOWCASE -->
-      <div class="card" id="clicker-showcase">
-        <h3>Clicker Gameplay Effects</h3>
-
-        <!-- First Video Elements -->
-        <h4 style="margin: 24px 0 12px 0; color: #fff; font-size: 18px;">Reverse Gravity Effect</h4>
-        <div class="media-content">
-          <video controls loop playsinline>
-            <source src="./Videos/Clicker To Flower.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-
-        <!-- Second Video Elements directly below -->
-        <h4 style="margin: 24px 0 12px 0; color: #fff; font-size: 18px;">Mouse Vacuum Effect</h4>
-        <div class="media-content">
-          <video controls loop playsinline>
-            <source src="./Videos/Upgraded CLicker.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-
     </div>  
 
     <footer>
@@ -478,6 +424,7 @@ end)</code></pre>
         const targetId = window.location.hash.substring(1);
         const targetElement = document.getElementById(targetId);
         if (targetElement) {
+          // Small delay to ensure layout is ready
           setTimeout(() => {
             targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }, 100);
