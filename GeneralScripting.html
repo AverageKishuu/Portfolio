@@ -162,7 +162,6 @@ header p {
   border-radius: 2px;
 }
 
-/* Added design standards for video labels inside custom cards */
 .card h4 {
   margin: 28px 0 12px 0;
   font-size: 18px;
@@ -206,11 +205,8 @@ code {
   border-radius: 16px;
   border: 1px solid var(--border);
   box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-  margin-top: 10px;
-  margin-bottom: 24px;
 }
 
-/* Removes bottom spacing on the last component element inside card panels */
 .media-content:last-of-type video {
   margin-bottom: 10px;
 }
@@ -359,6 +355,18 @@ footer {
         </p>
       </div>
 
+      <!-- NEW SECTION ON TOP OF SPIN CARD -->
+      <div class="card" id="cant-look-away">
+        <h3>Can't Look Away..</h3>
+        <div class="media-content">
+          <video controls loop playsinline>
+            <source src="./Videos/Can't look away 2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+
+      <!-- SPIN WHEEL SYSTEM -->
       <div class="card" id="spin-wheel">
         <h3>Spin Wheel System</h3>
         <div class="media-content">
@@ -372,6 +380,7 @@ footer {
         </p>
       </div>
 
+      <!-- UTILITY: UIMANAGER (OOP) -->
       <div class="card" id="ui-manager">
         <h3>Utility: UIManager (OOP)</h3>
         <div class="media-content">
@@ -415,7 +424,7 @@ script.Parent.MouseButton1Click:Connect(function()
 end)</code></pre>
       </div>
 
-      <!-- NEW SECTION: CLICKER EFFECT SHOWCASE -->
+      <!-- CLICKER EFFECT SHOWCASE -->
       <div class="card" id="clicker-effect">
         <h3>Clicker Effect</h3>
         
