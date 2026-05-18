@@ -164,6 +164,8 @@ header p {
 
 .media-content video {
   width: 100%;
+  height: auto;             /* Forces the height to scale naturally with the width */
+  object-fit: contain;      /* Ensures the video maintains its original aspect ratio */
   border-radius: 16px;
   border: 1px solid var(--border);
   box-shadow: 0 8px 30px rgba(0,0,0,0.3);
